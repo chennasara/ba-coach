@@ -1,0 +1,22 @@
+{
+  "name": "BA Karriere-Coach",
+  "short_name": "BA Coach",
+  "description": "Vorbereitung auf den Einstieg als Junior Business Analystin in Banken, Versicherungen, Beratung und Grossunternehmen.",
+  "lang": "de-CH",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#1240e0",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Quiz", "url": "./#quiz" },
+    { "name": "Fahrplan", "url": "./#fahrplan" },
+    { "name": "Bewerbungen", "url": "./#bewerbungen" }
+  ]
+}

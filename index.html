@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1240e0">
+<meta name="description" content="Vorbereitung auf den Einstieg als Junior Business Analystin">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BA Coach">
+<title>BA Karriere-Coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: ruhiger, präziser Coach – wie ein gutes Onboarding-Handbuch einer Bank.
+IDEA: ein technisches Datenblatt für die eigene Karriere: Fahrplan, Wissen, Training.
+PICTURE: grosser Countdown bis Sommer 2027 + Fortschrittsbalken je Bereich.
+COLOUR and TYPE: Kobaltblau, Weiss, Schwarz, helle #eef2ff Zonen; Space Grotesk + Inter.
+LAYOUT: schmaler Titelstreifen, Tab-Navigation, präzise Panels in einem Raster.
+*/
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0a0d18);--ink:light-dark(#0b0d14,#e8ebf5);--mut:light-dark(#4a5068,#9aa3bd);--zone:light-dark(#eef2ff,#141a30);--line:light-dark(#d5dcf2,#252d4a);--co:#1240e0;--co2:light-dark(#1240e0,#7d9bff);--ok:light-dark(#0b7a43,#4fd18b);--bad:light-dark(#b42318,#ff8a80)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(26px,4vw,40px)}h2{font-size:clamp(22px,3vw,30px);margin-bottom:6px}h3{font-size:19px}
+.top{background:var(--co);color:#fff;padding:calc(22px + env(safe-area-inset-top)) max(5vw,16px,env(safe-area-inset-right)) 0 max(5vw,16px,env(safe-area-inset-left))}
+.top p{margin:6px 0 16px;opacity:.85;max-width:62ch}
+nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav a{flex:none;color:#fff;text-decoration:none;padding:12px 14px;border-radius:8px 8px 0 0;font-weight:500;font-size:15px;opacity:.8}
+nav a.on{background:var(--bg);color:var(--ink);opacity:1}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #ffb800;outline-offset:2px}
+main{max-width:1240px;margin:0 auto;padding:clamp(20px,3vw,40px) max(5vw,16px) calc(60px + env(safe-area-inset-bottom))}
+section{display:none}section.on{display:block}
+.lead{color:var(--mut);max-width:68ch;margin:0 0 22px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr))}
+.card{background:var(--zone);border:1px solid var(--line);border-radius:12px;padding:20px}
+.hero{display:grid;gap:20px;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:stretch;margin-bottom:22px}
+.big{background:var(--co);color:#fff;border-radius:14px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;min-height:260px}
+.big .n{font:700 clamp(64px,11vw,120px)/1 "Space Grotesk",sans-serif}
+.big small{opacity:.85;font-size:15px}
+.row{display:flex;justify-content:space-between;gap:10px;font-size:15px;margin:12px 0 5px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--co2);transition:width .4s}
+.kern{font-weight:600;font-size:17px;margin:10px 0}
+ul.pts{list-style:none;padding:0;margin:0 0 12px}ul.pts li{padding:7px 0;border-top:1px solid var(--line)}
+.merk{background:var(--bg);border-left:4px solid var(--co2);padding:10px 12px;border-radius:6px;font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{border:1px solid var(--line);background:var(--bg);border-radius:20px;padding:5px 11px;font-size:14px;cursor:pointer;color:var(--ink);font:inherit;font-size:14px}
+.def{margin-top:10px;font-size:15px;color:var(--mut);min-height:0}
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line);cursor:pointer}
+.task input{width:22px;height:22px;flex:none;margin-top:1px;accent-color:var(--co)}
+.task.done span{text-decoration:line-through;color:var(--mut)}
+button,.btn{font:600 15px Inter,sans-serif;min-height:44px;padding:10px 16px;border-radius:8px;border:1px solid var(--co2);background:var(--co);color:#fff;cursor:pointer}
+button.ghost{background:transparent;color:var(--co2)}
+.opts{display:grid;gap:8px;margin:14px 0}
+.opt{text-align:left;background:var(--bg);color:var(--ink);border:1px solid var(--line);font-weight:500}
+.opt.r{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--bg))}
+.opt.w{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--bg))}
+.fb{padding:12px;border-radius:8px;background:var(--bg);border:1px solid var(--line);margin-bottom:12px}
+.meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--mut);font-size:14px}
+label{display:block;font-weight:500;font-size:15px;margin:12px 0 5px}
+input[type=number],input[type=text],input[type=date],select,textarea{width:100%;font:16px Inter,sans-serif;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-height:44px}
+textarea{min-height:110px;resize:vertical}
+.res{font:700 clamp(40px,7vw,64px)/1 "Space Grotesk",sans-serif;color:var(--co2);white-space:nowrap}
+.res+small{color:var(--mut)}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:15px}.kv b{white-space:nowrap}
+blockquote{margin:10px 0;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:8px;font-size:15px}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:14px;color:var(--mut);font-weight:600}
+.pill{display:inline-block;padding:2px 9px;border-radius:12px;font-size:13px;background:var(--zone);border:1px solid var(--line);white-space:nowrap}
+.filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}.filter .tag.on{background:var(--co);color:#fff;border-color:var(--co)}
+.form2{display:grid;gap:0 14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
+.note{font-size:13px;color:var(--mut);margin-top:10px}
+@media(max-width:760px){.hero{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mut)}.stack td:empty{display:none}}
+@media(prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<header class="top">
+<h1>Dein Weg zur Junior Business Analystin</h1>
+<p>Fahrplan, Branchenwissen und Training für Banken, Versicherungen, Beratungen und Grossunternehmen.</p>
+<nav id="nav">
+<a href="#start">Übersicht</a><a href="#fahrplan">Fahrplan</a><a href="#wissen">Branchenwissen</a><a href="#quiz">Quiz</a><a href="#alltag">Arbeitsalltag</a><a href="#interview">Interview</a><a href="#lohn">Lohn</a><a href="#bewerbungen">Bewerbungen</a>
+</nav>
+</header>
+<main>
+
+<section id="start">
+<div class="hero">
+<div class="big"><div><small>Tage bis zum Lehrabschluss (Ende Juli 2027)</small><div class="n" id="days">–</div></div><small id="heroTxt"></small></div>
+<div class="card"><h3>Dein Fortschritt</h3><div id="prog"></div><button class="ghost" style="margin-top:16px" onclick="location.hash='fahrplan'">Zum Fahrplan</button></div>
+</div>
+<div class="grid">
+<div class="card"><h3>📌 Heute sinnvoll</h3><div id="nextTasks"></div></div>
+<div class="card"><h3>🧠 Wissensstand</h3><div class="kv"><span>Quiz beantwortet</span><b id="qDone">0</b></div><div class="kv"><span>Richtig</span><b id="qOk">0 %</b></div><div class="kv"><span>Alltagssituationen gelöst</span><b id="sDone">0</b></div><div class="kv"><span>Interviewantworten vorbereitet</span><b id="iDone">0</b></div></div>
+<div class="card"><h3>💡 Der stärkste Hebel</h3><p class="kern">EFZ + BM + Studium + ein Portfolio mit echter BA-Arbeit.</p><div class="merk">Ein Zertifikat plus ein starkes Projekt schlägt vier Zertifikate ohne Praxis.</div></div>
+</div>
+</section>
+
+<section id="fahrplan">
+<h2>Fahrplan bis Sommer 2027</h2>
+<p class="lead">Hake ab, was erledigt ist. Der Fortschritt erscheint in der Übersicht.</p>
+<div class="grid" id="plan"></div>
+</section>
+
+<section id="wissen">
+<h2>Was du in diesen Branchen wissen solltest</h2>
+<p class="lead">Tippe auf einen Begriff für die Erklärung. Diese Themen fallen in Interviews und in den ersten Wochen im Job.</p>
+<div class="filter" id="wf"></div>
+<div class="grid" id="wcards"></div>
+</section>
+
+<section id="quiz">
+<h2>Quiz: Branche, BA-Handwerk, Arbeitsrecht</h2>
+<p class="lead">Wähle ein Thema. Falsche Antworten kommen später nochmals.</p>
+<div class="filter" id="qf"></div>
+<div class="card" id="qbox" style="max-width:760px"></div>
+</section>
+
+<section id="alltag">
+<h2>Arbeitsalltag trainieren</h2>
+<p class="lead">Echte Situationen aus Bank-, Versicherungs- und Konzernprojekten. Wie würdest du reagieren?</p>
+<div class="card" id="sbox" style="max-width:760px"></div>
+</section>
+
+<section id="interview">
+<h2>Interviewvorbereitung</h2>
+<p class="lead">Schreibe deine Antwort nach STAR: Situation, Aufgabe, Aktion, Resultat. Deine Notizen bleiben in diesem Browser gespeichert.</p>
+<div class="grid" id="ibox"></div>
+</section>
+
+<section id="lohn">
+<h2>Lohn rechnen und verhandeln</h2>
+<div class="hero">
+<div class="card"><label for="ref">100%-Referenzlohn pro Jahr (CHF)</label><input type="number" id="ref" step="500" placeholder="z. B. 80000" inputmode="numeric">
+<label for="pen">Pensum: <span id="penV">60</span> %</label><input type="range" id="pen" min="40" max="100" step="10" value="60" style="width:100%;min-height:44px;accent-color:var(--co)">
+<label for="ml">Anzahl Monatslöhne</label><select id="ml"><option value="13">13 (mit 13. Monatslohn)</option><option value="12">12</option></select>
+<label for="abz">Geschätzte Abzüge (AHV/IV/EO, ALV, BVG, NBU) in %</label><input type="number" id="abz" value="12" step="0.5">
+<label for="goal">Dein Ziel brutto pro Monat (optional)</label><input type="number" id="goal" step="50" placeholder="z. B. 3800" inputmode="numeric"><p class="note">Deine Beträge werden nur auf diesem Gerät gespeichert und sind nicht Teil der veröffentlichten App.</p></div>
+<div class="card"><small>Brutto pro Monat</small><div class="res" id="brutto">–</div><small id="ziel"></small>
+<div class="kv" style="margin-top:16px"><span>Brutto pro Jahr</span><b id="bj">–</b></div><div class="kv"><span>Netto pro Monat (Schätzung)</span><b id="net">–</b></div><div class="kv"><span>Nötiger Referenzlohn für dein Ziel</span><b id="need">–</b></div>
+<p class="note">Abzüge sind eine grobe Schätzung. Die Pensionskasse variiert je nach Arbeitgeber und Alter.</p></div>
+</div>
+<div class="grid">
+<div class="card"><h3>🗣️ Lohnvorstellung nennen</h3><blockquote>«Aufgrund meines Informatik-EFZ, meiner Berufsmaturität, meiner praktischen IT-Erfahrung und meines Business-Analysis-Portfolios stelle ich mir einen 100%-Referenzlohn von <b class="sRef">CHF …</b> brutto pro Jahr vor.»</blockquote><div class="merk">Immer den 100%-Lohn nennen, nie zuerst den Teilzeitbetrag.</div></div>
+<div class="card"><h3>🔁 Angebot liegt darunter</h3><blockquote>«Können wir nach sechs Monaten eine schriftlich vereinbarte Lohnüberprüfung mit einer Anpassung auf <b class="sRef">CHF …</b> vorsehen, sofern die vereinbarten Ziele erreicht werden?»</blockquote><div class="merk">Ziele und Termin schriftlich im Vertrag oder in der Zielvereinbarung festhalten.</div></div>
+<div class="card"><h3>➕ Ausser dem Lohn verhandelbar</h3><ul class="pts"><li>🎓 Beteiligung an CPRE- oder PL-300-Kosten</li><li>🗓️ Flexible Tage in Prüfungswochen</li><li>🏠 Homeoffice-Anteil</li><li>📈 Pensum später auf 70 % erhöhen</li></ul></div>
+</div>
+</section>
+
+<section id="bewerbungen">
+<h2>Bewerbungs-Tracker</h2>
+<p class="lead">Schnell hinzufügen:</p>
+<div class="tags" id="quick" style="margin-bottom:16px"></div>
+<form class="card" id="af"><div class="form2">
+<div><label for="fU">Unternehmen</label><input type="text" id="fU" required></div>
+<div><label for="fR">Stelle</label><input type="text" id="fR" placeholder="Junior Business Analyst"></div>
+<div><label for="fS">Status</label><select id="fS"><option>Interessant</option><option>Beworben</option><option>Interview</option><option>Angebot</option><option>Absage</option></select></div>
+<div><label for="fL">Lohnband / Notiz</label><input type="text" id="fL"></div>
+</div><button style="margin-top:14px">Hinzufügen</button></form>
+<div class="scroll" style="margin-top:18px"><table class="stack"><thead><tr><th>Unternehmen</th><th>Stelle</th><th>Status</th><th>Notiz</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="note" id="empty">Noch keine Einträge.</p>
+</section>
+</main>
+
+<script>
+{
+const S={get(k,d){try{const v=localStorage.getItem('bac_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('bac_'+k,JSON.stringify(v))}catch(e){}}};
+const $=id=>document.getElementById(id);
+const chf=n=>'CHF '+Math.round(n).toLocaleString('de-CH').replace(/,/g,'’');
+
+const PLAN=[
+{t:'🧭 Positionierung',i:['Lebenslauf in BA-Sprache umschreiben (Anforderungen aufgenommen, Prozesse dokumentiert …)','LinkedIn-Titel auf «Junior Business Analyst» ausrichten','10 passende Stelleninserate sammeln und Anforderungen vergleichen','Stellenbezeichnungen wie Praktikum oder Werkstudentin meiden']},
+{t:'📁 Fallstudie FutureTemplate',i:['Problem- und Stakeholderanalyse','Umfrageauswertung','IST- und SOLL-Prozess als BPMN','Funktionale und nicht funktionale Anforderungen','User Stories mit Akzeptanzkriterien','Entscheidungsmatrix','Testfälle und Nutzerfeedback','Messbare Verbesserungen']},
+{t:'🎫 Fallstudie Helpdesk',i:['Mindestens 200 fiktive Tickets erstellen','Excel- oder SQL-Auswertung','Power-BI-Dashboard','Bearbeitungszeit und SLA-Erfüllung berechnen','Engpässe identifizieren','Verbesserten SOLL-Prozess modellieren','Anforderungen und Testfälle ableiten']},
+{t:'🎓 Weiterbildung',i:['CPRE Foundation Level (IREB)','Power BI PL-300','SQL praktisch: JOIN, GROUP BY, Subqueries','PSM I (Scrum.org), ergänzend']},
+{t:'🚀 Bewerbung',i:['ZHAW-Immatrikulation bestätigt','Zielarbeitgeber recherchiert (Lohnband, Teilzeit möglich?)','Alle Interviewfragen mit STAR vorbereitet','Lohnverhandlung laut geübt']}];
+
+const W=[
+{c:'Bank',h:'🏦 Banken (UBS, ZKB, SIX)',k:'In der Bank dreht sich alles um Vertrauen, Regulierung und stabile Kernsysteme.',p:['🏛️ Die FINMA beaufsichtigt Banken; neue Prozesse brauchen oft Compliance-Freigaben','🧾 KYC und AML (Kundenidentifikation, Geldwäschereibekämpfung) sind typische BA-Projekte','💻 Kernbankensysteme wie Avaloq, Finnova oder Temenos – Anforderungen sind oft Anpassungen daran','💸 Zahlungsverkehr läuft über den Standard ISO 20022; dazu kommt die QR-Rechnung','🔒 Bankkundengeheimnis und Datenschutz: nur sehen, was du für deine Aufgabe brauchst'],m:'Frag bei jeder Anforderung zuerst: Ist das reguliert und wer muss es freigeben?',g:{'KYC':'Know Your Customer: Identität und Hintergrund von Kundinnen und Kunden prüfen.','AML':'Anti-Money-Laundering: Massnahmen gegen Geldwäscherei, z. B. Transaktionsüberwachung.','Compliance':'Einhaltung von Gesetzen, Regeln und internen Weisungen.','4-Augen-Prinzip':'Eine zweite Person prüft und bestätigt eine kritische Aktion.','Change Request':'Formaler Antrag für eine Änderung an System oder Projektumfang.','Core Banking':'Zentrales System für Konten, Zahlungen und Kundenstamm.'}},
+{c:'Versicherung',h:'🛡️ Versicherungen (Allianz, Zurich, AXA)',k:'Versicherungen verkaufen ein Versprechen – die Prozesse drehen sich um Policen, Schäden und Risiken.',p:['📄 Wertschöpfung: Offerte → Police → Prämie → Schadenfall → Leistung','🧮 Sparten: Leben und Nichtleben (Sach, Haftpflicht, Motorfahrzeug); Krankenversicherung nach KVG (Grund) und VVG (Zusatz)','🏛️ Auch hier beaufsichtigt die FINMA; der Swiss Solvency Test (SST) prüft das Kapital','💻 Systeme wie Guidewire oder Syrius (Adcubum) und viel ältere Software','🤖 Typische Projekte: Schadenprozess automatisieren, Kundenportal, Dokumentenerkennung, Datenqualität'],m:'Folge der Police durch ihren Lebenszyklus – dort findest du die Prozesse.',g:{'Police':'Der Versicherungsvertrag mit allen Deckungen und Bedingungen.','Prämie':'Der Preis, den die Kundin für die Versicherung bezahlt.','Underwriting':'Risikoprüfung: Wird jemand versichert und zu welcher Prämie?','Schadenmeldung':'Meldung eines Schadenfalls, der Start des Claims-Prozesses.','Selbstbehalt':'Teil des Schadens, den die versicherte Person selbst trägt.','Broker':'Unabhängiger Vermittler zwischen Kundschaft und Versicherer.'}},
+{c:'Beratung',h:'💼 Beratung (KPMG, Eraneos, ti&m)',k:'In der Beratung verkaufst du Zeit und Ergebnisse an Kundinnen und Kunden.',p:['⏱️ Genaue Zeiterfassung und Auslastung («billable hours») sind zentral','🧳 Wechselnde Kundenprojekte, oft bei Banken, Versicherungen und Verwaltungen','📊 Deliverables: Analysen, Folien, Workshops – sauber und kundentauglich','🗣️ Kernaussage zuerst (Pyramidenprinzip), dann die Begründung','📈 Steile Lernkurve, dafür oft mehr Tempo und Druck'],m:'Jede Stunde muss für die Kundschaft Wert erzeugen – und nachvollziehbar sein.',g:{'Billable':'Stunden, die dem Kunden verrechnet werden können.','Auslastung':'Anteil der Arbeitszeit, der verrechenbar ist.','Deliverable':'Vereinbartes Arbeitsergebnis, z. B. ein Konzept oder ein Prototyp.','Scope':'Vereinbarter Umfang eines Auftrags.','Pyramidenprinzip':'Zuerst die Schlussfolgerung, dann die stützenden Argumente.'}},
+{c:'Konzern',h:'🏢 Grossunternehmen (Swisscom, SBB, Migros)',k:'Grosse Organisationen haben viele Stakeholder, lange Entscheidungswege und viele Prozesse.',p:['📡 Swisscom: Telekommunikation und IT, stark agil organisiert','🚆 SBB: Bahnbetrieb, Sicherheit hat Vorrang, Beschaffungen folgen strengen Regeln','🛒 Migros: Genossenschaft mit Detailhandel, Logistik und eigener Industrie','🧭 Skalierte Agilität (oft SAFe): PI-Planning, Release Train, Epics → Features → Stories','🤝 Stakeholdermanagement entscheidet oft über Erfolg'],m:'Finde früh heraus, wer entscheidet – und wer betroffen ist.',g:{'SAFe':'Scaled Agile Framework: Agilität für viele Teams gleichzeitig.','PI-Planning':'Gemeinsame Planung aller Teams für die nächsten ca. 8–12 Wochen.','Epic':'Grosses Vorhaben, das in Features und Stories zerlegt wird.','RACI':'Wer ist Responsible, Accountable, Consulted, Informed?','Steering Committee':'Lenkungsausschuss, der wichtige Projektentscheide trifft.'}},
+{c:'BA',h:'🧩 BA-Handwerk',k:'Eine Business Analystin übersetzt zwischen Fachbereich und IT.',p:['🎯 Zuerst das Problem verstehen, dann über Lösungen sprechen','🗺️ Prozesse als IST und SOLL in BPMN 2.0 modellieren','📝 User Story: «Als … möchte ich …, damit …» plus Akzeptanzkriterien','⚖️ Funktional (was das System tut) und nicht funktional (wie gut: Performance, Sicherheit)','🔢 Priorisieren mit MoSCoW; abnehmen mit User Acceptance Tests'],m:'Gute Anforderungen sind klar, testbar und haben einen Grund.',g:{'BPMN':'Business Process Model and Notation: Standard für Prozessdiagramme.','MoSCoW':'Must, Should, Could, Won’t – eine Priorisierungsmethode.','Given/When/Then':'Format für Akzeptanzkriterien: Ausgangslage, Aktion, erwartetes Ergebnis.','UAT':'User Acceptance Test: Fachbereich prüft, ob die Lösung passt.','Backlog':'Priorisierte Liste aller offenen Anforderungen.','INVEST':'Checkliste für gute User Stories: unabhängig, verhandelbar, wertvoll, schätzbar, klein, testbar.'}},
+{c:'Recht',h:'📜 Arbeitsleben Schweiz',k:'Kenne die Grundregeln im Arbeitsvertrag – dann verhandelst du sicherer.',p:['📅 Probezeit: ohne Abmachung 1 Monat, höchstens 3 Monate; Kündigung dort mit 7 Tagen Frist','🗓️ Danach im 1. Dienstjahr 1 Monat Kündigungsfrist, wenn nichts anderes vereinbart ist','🏖️ Ferien: mindestens 4 Wochen pro Jahr, bis zum 20. Geburtstag 5 Wochen','💰 Lohnabzüge: AHV/IV/EO, ALV, Pensionskasse (BVG) und Nichtberufsunfall (NBU)','🎓 Bezahlte Weiterbildung hat oft eine Rückzahlungsklausel – vor dem Unterschreiben lesen'],m:'Was nicht im Vertrag steht, ist nicht vereinbart.',g:{'OR':'Obligationenrecht: regelt in der Schweiz unter anderem den Arbeitsvertrag.','BVG':'Gesetz zur beruflichen Vorsorge, der Pensionskasse.','13. Monatslohn':'Nur geschuldet, wenn er vereinbart ist.','Arbeitszeugnis':'Kann jederzeit verlangt werden; Zwischenzeugnis z. B. bei Vorgesetztenwechsel.','nDSG':'Revidiertes Datenschutzgesetz, gilt seit September 2023.'}}];
+
+const Q=[
+{c:'Bank',q:'Wer beaufsichtigt in der Schweiz Banken und Versicherungen?',o:['SNB','FINMA','SECO','Swissbanking'],a:1,e:'Die FINMA ist die Aufsichtsbehörde. Die SNB ist für die Geldpolitik zuständig.'},
+{c:'Bank',q:'Was bedeutet KYC?',o:['Keep Your Code','Know Your Customer','Key Yield Control','Know Your Compliance'],a:1,e:'Know Your Customer: Kundinnen und Kunden werden identifiziert und geprüft.'},
+{c:'Bank',q:'Welcher Standard regelt Zahlungsnachrichten im modernen Zahlungsverkehr?',o:['ISO 27001','ISO 9001','ISO 20022','BPMN 2.0'],a:2,e:'ISO 20022 ist das Nachrichtenformat. ISO 27001 betrifft Informationssicherheit.'},
+{c:'Bank',q:'Du siehst im Testsystem echte Kundendaten. Was tust du?',o:['Weiterarbeiten, ist ja intern','Screenshot an das Team schicken','Sofort der verantwortlichen Stelle melden und nicht weiterverwenden','Daten selbst anonymisieren'],a:2,e:'Echte Kundendaten gehören nicht ins Testsystem. Melden ist korrekt, nicht selbst eingreifen.'},
+{c:'Versicherung',q:'Was ist die Prämie?',o:['Die Leistung im Schadenfall','Der Preis für die Versicherung','Der Bonus für Mitarbeitende','Der Selbstbehalt'],a:1,e:'Die Prämie bezahlt die versicherte Person. Die Leistung zahlt der Versicherer.'},
+{c:'Versicherung',q:'Was prüft das Underwriting?',o:['Ob ein Risiko versichert wird und zu welchem Preis','Ob Rechnungen bezahlt wurden','Ob die IT läuft','Ob ein Schaden betrügerisch ist'],a:0,e:'Underwriting ist die Risikoprüfung vor Vertragsabschluss.'},
+{c:'Versicherung',q:'Die Grundversicherung der Krankenkasse fällt unter …',o:['VVG','KVG','OR','BVG'],a:1,e:'Grundversicherung: KVG. Zusatzversicherungen: VVG.'},
+{c:'Beratung',q:'Warum ist exakte Zeiterfassung in der Beratung so wichtig?',o:['Für die Ferienplanung','Weil Stunden dem Kunden verrechnet werden','Nur wegen des Arbeitsgesetzes','Ist nicht wichtig'],a:1,e:'Beratungsfirmen verdienen mit verrechenbaren Stunden. Ungenaue Erfassung kostet Geld und Vertrauen.'},
+{c:'Beratung',q:'Wie startest du eine Präsentation beim Kunden nach dem Pyramidenprinzip?',o:['Mit der Methodik','Mit der Kernaussage oder Empfehlung','Mit allen Daten','Mit dem Zeitplan'],a:1,e:'Zuerst die Schlussfolgerung, danach die Begründung.'},
+{c:'Konzern',q:'Was passiert beim PI-Planning?',o:['Lohnplanung','Gemeinsame Planung mehrerer Teams für die nächsten Wochen','Budgetkontrolle','Code-Review'],a:1,e:'Im SAFe-PI-Planning planen alle Teams eines Release Trains gemeinsam das nächste Program Increment.'},
+{c:'Konzern',q:'In einer RACI-Matrix steht «A» für …',o:['Assisted','Accountable','Approved','Analyst'],a:1,e:'Accountable: die Person, die am Ende verantwortlich ist und entscheidet.'},
+{c:'BA',q:'Welche Anforderung ist nicht funktional?',o:['Das System erstellt eine Rechnung','Die Seite lädt in unter 2 Sekunden','Die Nutzerin kann ein Passwort ändern','Der Export erstellt eine CSV-Datei'],a:1,e:'Ladezeit beschreibt, wie gut das System etwas tut – also nicht funktional.'},
+{c:'BA',q:'Was gehört in ein gutes Akzeptanzkriterium?',o:['Eine technische Lösung','Ein testbares erwartetes Ergebnis','Der Name der Entwicklerin','Eine Schätzung in Stunden'],a:1,e:'Akzeptanzkriterien müssen prüfbar sein, z. B. Given/When/Then.'},
+{c:'BA',q:'Wofür steht das «W» in MoSCoW?',o:['Would have','Won’t have (this time)','Well done','Workflow'],a:1,e:'Won’t: bewusst nicht in diesem Release.'},
+{c:'BA',q:'Welche SQL-Klausel brauchst du, um Tickets pro Kategorie zu zählen?',o:['ORDER BY','GROUP BY','JOIN','WHERE'],a:1,e:'SELECT kategorie, COUNT(*) FROM tickets GROUP BY kategorie;'},
+{c:'Recht',q:'Wie lange dauert die Probezeit, wenn im Vertrag nichts steht?',o:['1 Woche','1 Monat','3 Monate','6 Monate'],a:1,e:'Gemäss OR gilt der erste Monat als Probezeit. Verlängern geht bis maximal 3 Monate.'},
+{c:'Recht',q:'Ist der 13. Monatslohn gesetzlich vorgeschrieben?',o:['Ja, immer','Nur bei Vollzeit','Nein, nur wenn vereinbart','Nur bei Banken'],a:2,e:'Er ist nur geschuldet, wenn er im Vertrag oder GAV vereinbart ist.'},
+{c:'Recht',q:'Wie viele Wochen Ferien hast du mindestens ab dem 20. Geburtstag?',o:['3','4','5','6'],a:1,e:'Mindestens 4 Wochen, bis zum vollendeten 20. Altersjahr 5 Wochen.'}];
+
+const SIT=[
+{q:'Eine Fachbereichsleiterin will «sofort» ein neues Feature, mitten im Sprint.',o:['Sofort umsetzen lassen','Ablehnen, Sprint ist fix','Bedarf und Dringlichkeit klären, als Story erfassen und mit dem Product Owner priorisieren','An die IT weiterleiten'],a:2,e:'Du nimmst das Anliegen ernst, sammelst Fakten und lässt den PO priorisieren. So bleibt der Prozess fair.'},
+{q:'Im Workshop sagen zwei Stakeholder Gegensätzliches über denselben Prozess.',o:['Der ranghöheren Person folgen','Beide Varianten dokumentieren, Unterschied sichtbar machen und einen Entscheid durch die verantwortliche Person herbeiführen','Selbst entscheiden','Das Thema streichen'],a:1,e:'Konflikte transparent machen ist BA-Arbeit. Entscheiden muss die Accountable-Person.'},
+{q:'Du merkst, dass deine Anforderung einen Fehler enthält, der schon entwickelt wurde.',o:['Schweigen und hoffen','Sofort offen melden, Auswirkung abschätzen und eine Korrektur vorschlagen','Dem Entwickler die Schuld geben','Heimlich ändern'],a:1,e:'Früh und ehrlich melden schafft Vertrauen. Gerade in Banken ist Transparenz Pflicht.'},
+{q:'Ein Kollege bittet dich, ihm Kundendaten per privatem Mail zu schicken.',o:['Machen, ist ja ein Kollege','Ablehnen und auf den offiziellen, sicheren Weg verweisen','Nur einen Teil schicken','Daten als Foto senden'],a:1,e:'Kundendaten verlassen nie die vorgesehenen Kanäle. Bei Unsicherheit Informationssicherheit fragen.'},
+{q:'Prüfungswoche an der ZHAW und gleichzeitig eine wichtige Projekt-Deadline.',o:['Nichts sagen und beides versuchen','Frühzeitig mit der vorgesetzten Person planen, Arbeit vorziehen oder Übergabe organisieren','Krank melden','Prüfung verschieben'],a:1,e:'Früh kommunizieren zeigt Professionalität. Idealerweise ist Flexibilität schon im Vertrag geregelt.'},
+{q:'Beim Kunden (Beratung) wirst du nach etwas gefragt, das du nicht weisst.',o:['Etwas erfinden','Ehrlich sagen, dass du es abklärst, und bis wann du dich meldest','Thema wechseln','Auf die Chefin zeigen'],a:1,e:'«Ich kläre das ab und melde mich bis morgen» wirkt kompetenter als Raten.'},
+{q:'Dein erstes Meeting: Du verstehst viele Abkürzungen nicht.',o:['Nicken','Mitschreiben, nach dem Meeting gezielt nachfragen und ein eigenes Glossar führen','Meeting verlassen','Alles googeln während des Meetings'],a:1,e:'Ein eigenes Glossar beschleunigt das Einarbeiten enorm. Kurze Fragen sind im ersten Monat normal.'}];
+
+const IQ=[
+['Warum möchten Sie Business Analystin werden?','Verbinde Helpdesk-Erfahrung mit Interesse an Prozessen und Wirtschaftsinformatik.'],
+['Erzählen Sie von einem Prozess, den Sie verbessert haben.','Helpdesk-Fallstudie: Engpass, Massnahme, gemessene Wirkung.'],
+['Wie gehen Sie mit widersprüchlichen Anforderungen um?','Transparenz, Dokumentation, Entscheid durch verantwortliche Person.'],
+['Wie würden Sie eine User Story für [Prozess] schreiben?','Als … möchte ich … damit … + 2–3 Akzeptanzkriterien.'],
+['Warum unsere Bank / Versicherung?','Konkretes Projekt, Werte oder Digitalisierungsthema des Unternehmens nennen.'],
+['Wie vereinbaren Sie Studium und 60 % Arbeit?','Fixe Präsenztage, Planung der Prüfungsphasen, Erfahrung mit Lehre + BM.'],
+['Was wissen Sie über Regulierung in unserer Branche?','FINMA, Datenschutz, KYC/AML oder SST – kurz und korrekt.'],
+['Erzählen Sie von einem Fehler und was Sie gelernt haben.','Echtes Beispiel, offen gemeldet, konkrete Lehre daraus.'],
+['Welche Tools beherrschen Sie?','SQL, Excel, Power BI, BPMN-Tool, Jira/Confluence – mit Beispiel aus dem Portfolio.'],
+['Was sind Ihre Lohnvorstellungen?','100%-Referenzlohn nennen und begründen – Betrag im Lohn-Tab festlegen.']];
+
+/* Navigation */
+const tabs=['start','fahrplan','wissen','quiz','alltag','interview','lohn','bewerbungen'];
+function route(){const h=location.hash.slice(1);const t=tabs.includes(h)?h:'start';tabs.forEach(x=>$(x).classList.toggle('on',x===t));document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+t));if(t==='start')renderStart();const on=document.querySelector('#nav a.on');if(on){const n=$('nav');n.scrollLeft=on.offsetLeft-n.clientWidth/2+on.clientWidth/2}window.scrollTo(0,0)}
+addEventListener('hashchange',route);
+
+/* Fahrplan */
+let done=S.get('done',{});
+function renderPlan(){$('plan').innerHTML=PLAN.map((g,gi)=>{const n=g.i.filter((_,ii)=>done[gi+'-'+ii]).length;return `<div class="card"><h3>${g.t}</h3><div class="row"><span>${n} von ${g.i.length}</span></div><div class="bar"><i style="width:${n/g.i.length*100}%"></i></div>${g.i.map((t,ii)=>{const k=gi+'-'+ii;return `<label class="task ${done[k]?'done':''}"><input type="checkbox" data-k="${k}" ${done[k]?'checked':''}><span>${t}</span></label>`}).join('')}</div>`}).join('')}
+$('plan').addEventListener('change',e=>{const k=e.target.dataset.k;if(!k)return;done[k]=e.target.checked;S.set('done',done);renderPlan()});
+
+/* Start */
+function renderStart(){const d=Math.max(0,Math.ceil((new Date(2027,6,31)-new Date())/864e5));$('days').textContent=d;$('heroTxt').textContent='Etwa '+Math.round(d/7)+' Wochen für Portfolio, Zertifikat und Bewerbungen.';
+$('prog').innerHTML=PLAN.map((g,gi)=>{const n=g.i.filter((_,ii)=>done[gi+'-'+ii]).length;return `<div class="row"><span>${g.t}</span><b>${Math.round(n/g.i.length*100)} %</b></div><div class="bar"><i style="width:${n/g.i.length*100}%"></i></div>`}).join('');
+const open=[];PLAN.forEach((g,gi)=>g.i.forEach((t,ii)=>{if(!done[gi+'-'+ii]&&open.length<3)open.push(t)}));$('nextTasks').innerHTML=open.length?'<ul class="pts">'+open.map(t=>'<li>'+t+'</li>').join('')+'</ul>':'<p>Alles erledigt – stark! 🎉</p>';
+const st=S.get('qstat',{n:0,ok:0});$('qDone').textContent=st.n;$('qOk').textContent=st.n?Math.round(st.ok/st.n*100)+' %':'–';$('sDone').textContent=Object.keys(S.get('sit',{})).length;$('iDone').textContent=Object.values(S.get('iv',{})).filter(v=>v.trim()).length}
+
+/* Wissen */
+const cats=[['alle','Alle'],['Bank','Bank'],['Versicherung','Versicherung'],['Beratung','Beratung'],['Konzern','Grossunternehmen'],['BA','BA-Handwerk'],['Recht','Arbeitsrecht']];
+let wc='alle';
+function renderW(){$('wf').innerHTML=cats.map(([k,l])=>`<button class="tag ${wc===k?'on':''}" data-c="${k}">${l}</button>`).join('');
+$('wcards').innerHTML=W.filter(w=>wc==='alle'||w.c===wc).map((w,i)=>`<div class="card"><h3>${w.h}</h3><p class="kern">${w.k}</p><ul class="pts">${w.p.map(x=>'<li>'+x+'</li>').join('')}</ul><div class="merk">💡 Merksatz: ${w.m}</div><div class="tags">${Object.keys(w.g).map(t=>`<button class="tag" data-w="${W.indexOf(w)}" data-t="${t}">${t}</button>`).join('')}</div><div class="def" id="def${W.indexOf(w)}"></div></div>`).join('')}
+$('wf').addEventListener('click',e=>{if(e.target.dataset.c){wc=e.target.dataset.c;renderW()}});
+$('wcards').addEventListener('click',e=>{const b=e.target.dataset;if(b.t){$('def'+b.w).innerHTML='<b>'+b.t+':</b> '+W[b.w].g[b.t]}});
+
+/* Quiz */
+let qc='alle',qi=0,qList=[],qAns=false;
+const qcats=[['alle','Alle']].concat(cats.slice(1));
+function buildQ(){const wrong=S.get('wrong',[]);qList=Q.map((q,i)=>i).filter(i=>qc==='alle'||Q[i].c===qc);qList.sort((a,b)=>(wrong.includes(b)-wrong.includes(a))||Math.random()-.5);qi=0;renderQ()}
+function renderQ(){$('qf').innerHTML=qcats.map(([k,l])=>`<button class="tag ${qc===k?'on':''}" data-c="${k}">${l}</button>`).join('');
+if(qi>=qList.length){$('qbox').innerHTML='<h3>Runde fertig 🎉</h3><p>Falsch beantwortete Fragen kommen in der nächsten Runde zuerst.</p><button id="qre">Neue Runde</button>';return}
+const q=Q[qList[qi]];qAns=false;$('qbox').innerHTML=`<div class="meta"><span>${cats.find(c=>c[0]===q.c)[1]}</span><span>Frage ${qi+1} von ${qList.length}</span></div><h3 style="margin-top:10px">${q.q}</h3><div class="opts">${q.o.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join('')}</div><div id="qfb"></div>`}
+$('qf').addEventListener('click',e=>{if(e.target.dataset.c){qc=e.target.dataset.c;buildQ()}});
+$('qbox').addEventListener('click',e=>{if(e.target.id==='qre'){buildQ();return}if(e.target.id==='qnext'){qi++;renderQ();return}const i=e.target.dataset.i;if(i===undefined||qAns)return;qAns=true;const idx=qList[qi],q=Q[idx],ok=+i===q.a;
+document.querySelectorAll('#qbox .opt').forEach((b,j)=>{if(j===q.a)b.classList.add('r');else if(j===+i)b.classList.add('w')});
+const st=S.get('qstat',{n:0,ok:0});st.n++;if(ok)st.ok++;S.set('qstat',st);let wr=S.get('wrong',[]);wr=ok?wr.filter(x=>x!==idx):[...new Set([...wr,idx])];S.set('wrong',wr);
+$('qfb').innerHTML=`<div class="fb"><b>${ok?'✅ Richtig.':'❌ Nicht ganz.'}</b> ${q.e}</div><button id="qnext">Weiter</button>`});
+
+/* Alltag */
+let si=0,sAns=false;
+function renderS(){const s=SIT[si];sAns=false;$('sbox').innerHTML=`<div class="meta"><span>Situation ${si+1} von ${SIT.length}</span></div><h3 style="margin-top:10px">${s.q}</h3><div class="opts">${s.o.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join('')}</div><div id="sfb"></div>`}
+$('sbox').addEventListener('click',e=>{if(e.target.id==='snext'){si=(si+1)%SIT.length;renderS();return}const i=e.target.dataset.i;if(i===undefined||sAns)return;sAns=true;const s=SIT[si];
+document.querySelectorAll('#sbox .opt').forEach((b,j)=>{if(j===s.a)b.classList.add('r');else if(j===+i)b.classList.add('w')});const sd=S.get('sit',{});if(+i===s.a){sd[si]=1;S.set('sit',sd)}
+$('sfb').innerHTML=`<div class="fb"><b>${+i===s.a?'✅ Professionell gelöst.':'🤔 Besser wäre die markierte Antwort.'}</b> ${s.e}</div><button id="snext">Nächste Situation</button>`});
+
+/* Interview */
+const iv=S.get('iv',{});
+$('ibox').innerHTML=IQ.map(([q,h],i)=>`<div class="card"><h3>${q}</h3><p class="note" style="margin:8px 0">💡 ${h}</p><label for="iv${i}">Deine Antwort (STAR)</label><textarea id="iv${i}" data-i="${i}" placeholder="Situation … Aufgabe … Aktion … Resultat …"></textarea></div>`).join('');
+IQ.forEach((_,i)=>{$('iv'+i).value=iv[i]||''});
+$('ibox').addEventListener('input',e=>{const i=e.target.dataset.i;if(i!==undefined){iv[i]=e.target.value;S.set('iv',iv)}});
+
+/* Lohn */
+const LS=S.get('lohn',{});['ref','pen','ml','abz','goal'].forEach(id=>{if(LS[id]!==undefined)$(id).value=LS[id]});
+function calc(){const r=+$('ref').value||0,p=+$('pen').value,m=+$('ml').value,a=+$('abz').value||0,g=+$('goal').value||0;$('penV').textContent=p;
+['ref','pen','ml','abz','goal'].forEach(id=>LS[id]=$(id).value);S.set('lohn',LS);
+const y=r*p/100,mo=y/m;$('brutto').textContent=r?chf(mo):'–';$('bj').textContent=r?chf(y):'–';$('net').textContent=r?chf(mo*(1-a/100)):'–';
+$('need').textContent=g?chf(g*m/(p/100)):'–';$('ziel').textContent=!r?'Gib einen Referenzlohn ein.':!g?'Optional: Ziel eingeben.':mo>=g?'✅ Dein Ziel ist erreicht':'Noch '+chf(g-mo)+' bis zu deinem Ziel';
+document.querySelectorAll('.sRef').forEach(e=>e.textContent=r?chf(r):'CHF …')}
+['ref','pen','ml','abz','goal'].forEach(id=>$(id).addEventListener('input',calc));
+
+/* Tracker */
+let apps=S.get('apps',[]);
+const QA=['Allianz','Zurich','AXA','SIX','ZKB','UBS','KPMG','Eraneos','ti&m','Swisscom','SBB','Migros'];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$('quick').innerHTML=QA.map(n=>`<button class="tag" data-n="${esc(n)}">+ ${esc(n)}</button>`).join('');
+function renderT(){$('empty').style.display=apps.length?'none':'block';$('tb').innerHTML=apps.map((a,i)=>`<tr><td><b>${esc(a.u)}</b></td><td>${esc(a.r||'–')}</td><td><select data-s="${i}" aria-label="Status">${['Interessant','Beworben','Interview','Angebot','Absage'].map(s=>`<option ${a.s===s?'selected':''}>${s}</option>`).join('')}</select></td><td>${esc(a.l||'')}</td><td><button class="ghost" data-d="${i}" aria-label="Löschen">Entfernen</button></td></tr>`).join('')}
+function addApp(o){apps.push(o);S.set('apps',apps);renderT()}
+$('quick').addEventListener('click',e=>{const n=e.target.dataset.n;if(n&&!apps.some(a=>a.u===n))addApp({u:n,r:'Junior Business Analyst',s:'Interessant',l:''})});
+$('af').addEventListener('submit',e=>{e.preventDefault();addApp({u:$('fU').value.trim(),r:$('fR').value.trim(),s:$('fS').value,l:$('fL').value.trim()});e.target.reset()});
+$('tb').addEventListener('change',e=>{const i=e.target.dataset.s;if(i!==undefined){apps[i].s=e.target.value;S.set('apps',apps)}});
+$('tb').addEventListener('click',e=>{const i=e.target.dataset.d;if(i!==undefined){apps.splice(i,1);S.set('apps',apps);renderT()}});
+
+renderPlan();renderW();buildQ();renderS();calc();renderT();route();
+}
+</script>
+<script>
+if('serviceWorker' in navigator){addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})})}
+</script>
+</body>
+</html>
